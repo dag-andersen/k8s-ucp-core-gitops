@@ -1,0 +1,25 @@
+apiVersion: container.gcp.crossplane.io/v1beta1
+kind: NodePool
+metadata:
+  name: gcp-k8s-np
+spec:
+  forProvider:
+    autoscaling:
+      autoprovisioned: false
+      enabled: false
+    clusterRef:
+      name: gcp-k8s
+    config:
+      machineType: e2-medium
+      diskSizeGb: 10
+      diskType: pd-standard
+      imageType: COS_CONTAINERD
+      labels:
+        owner: crossplane
+    initialNodeCount: 1
+    maxPodsConstraint:
+      maxPodsPerNode: 110
+    locations:
+      - "europe-west9-a"
+  providerConfigRef:
+    name: gcp-provider-config

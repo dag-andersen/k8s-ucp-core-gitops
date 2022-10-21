@@ -1,0 +1,17 @@
+nameReference:
+  - kind: Cluster
+    fieldSpecs:
+      - kind: NodePool
+        path: spec/forProvider/clusterRef/name
+      - kind: Cluster
+        path: spec/writeConnectionSecretToRef/name  
+  - kind: Subnetwork
+    fieldSpecs:
+      - kind: Cluster
+        path: spec/forProvider/subnetworkRef/name
+  - kind: Network
+    fieldSpecs:
+      - kind: Cluster
+        path: spec/forProvider/networkRef/name
+      - kind: Subnetwork
+        path: spec/forProvider/networkRef/name  

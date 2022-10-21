@@ -1,0 +1,16 @@
+apiVersion: dns.gcp.crossplane.io/v1alpha1
+kind: ResourceRecordSet
+metadata:
+  name: argo.core.dagandersen.com
+  labels:
+    service: gke
+    creation: crossplane
+spec:
+  forProvider:
+    type: A
+    ttl: 300
+    rrdatas:
+      - "34.155.99.218"
+    managedZone: dagandersen-zone
+  providerConfigRef:
+    name: gcp-provider-config

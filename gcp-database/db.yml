@@ -1,0 +1,20 @@
+apiVersion: database.gcp.crossplane.io/v1beta1
+kind: CloudSQLInstance
+metadata:
+  name: postgres-instance-2
+spec:
+  forProvider:
+    databaseVersion: POSTGRES_12
+    region: us-west2
+    settings:
+      tier: db-custom-1-3840
+      dataDiskSizeGb: 10
+      ipConfiguration:
+        authorizedNetworks:
+        - value: 0.0.0.0/0
+        ipv4Enabled: true
+  providerConfigRef:
+    name: gcp-provider-config
+  writeConnectionSecretToRef:
+    namespace: crossplane-system
+    name: gcp-database-conn

@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: aws-database
+  namespace: argocd
+spec:
+  project: infrastructure
+  source:
+    repoURL: https://github.com/dag-andersen/k8s-core-infra
+    targetRevision: HEAD
+    path: ./aws-database
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default

@@ -1,0 +1,14 @@
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
+metadata:
+  name: auto-k8s-stage
+spec:
+  providerConfigRef:
+    name: gcp-provider-config
+  forProvider:
+    location: europe-west9
+    autopilot:
+      enabled: true
+  writeConnectionSecretToRef:
+    name: auto-kube-stage
+    namespace: default

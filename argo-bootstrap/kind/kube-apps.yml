@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: infrastructure-bootstrap
+  namespace: argocd
+spec:
+  project: default
+  destination:
+    name: in-cluster
+    namespace: default
+  source:
+    repoURL: https://github.com/dag-andersen/k8s-core-infra
+    targetRevision: HEAD
+    path: ./kube-applications/host/kind
+  syncPolicy:
+    automated:
+      prune: true

@@ -1,0 +1,20 @@
+apiVersion: kubernetes.do.crossplane.io/v1alpha1
+kind: DOKubernetesCluster
+metadata:
+  name: do-k8s-prod
+spec:
+  providerConfigRef:
+    name: do-provider-config
+  forProvider:
+    region: ams3
+    version: 1.22.8-do.1
+    nodePools:
+      - size: s-1vcpu-2gb
+        count: 3
+        name: worker-pool
+    maintenancePolicy:
+      startTime: "00:00"
+      day: wednesday
+    autoUpgrade: true
+    surgeUpgrade: false
+    highlyAvailable: false

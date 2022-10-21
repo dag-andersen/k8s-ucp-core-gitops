@@ -1,0 +1,14 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- ../../envs/core
+
+patchesJson6902:
+- target:
+    version: v1alpha1
+    kind: Application
+    name: argo-config
+  patch: |-
+    - op: replace
+      path: /spec/source/path
+      value: "argo-config/overlays/kind"

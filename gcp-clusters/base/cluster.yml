@@ -1,0 +1,33 @@
+apiVersion: container.gcp.crossplane.io/v1beta2
+kind: Cluster
+metadata:
+  name: gcp-k8s
+  labels:
+    service: gke
+    creation: crossplane
+spec:
+  forProvider:
+    addonsConfig:
+      networkPolicyConfig:
+        disabled: false
+    networkRef:
+      name: crossplane-network
+    subnetworkRef:
+      name: crossplane-subnetwork
+    location: europe-west9-a
+    ipAllocationPolicy:
+      useIpAliases: true
+    masterAuth:
+      clientCertificateConfig:
+        issueClientCertificate: false
+    defaultMaxPodsConstraint:
+      maxPodsPerNode: 110
+    networkPolicy:
+      enabled: false
+    resourceLabels:
+      owner: crossplane
+  providerConfigRef:
+    name: gcp-provider-config
+  writeConnectionSecretToRef:
+    name: gcp-k8s
+    namespace: default

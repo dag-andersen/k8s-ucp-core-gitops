@@ -1,0 +1,18 @@
+apiVersion: dagandersen.com/v1
+kind: Syncer
+metadata:
+  name: secret-syncer
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  data:
+    - sourceName: gcp-database-conn
+      sourceNamespace: crossplane-system
+      kinds: secret
+      targetCluster: gcp-k8s-prod
+      targetNamespace: default
+    - sourceName: gcp-database-conn
+      sourceNamespace: crossplane-system
+      kinds: secret
+      targetCluster: gcp-k8s-stage
+      targetNamespace: default
