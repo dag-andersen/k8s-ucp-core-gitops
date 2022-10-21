@@ -9,7 +9,7 @@ spec:
     name: in-cluster
     namespace: default
   source:
-    repoURL: https://github.com/dag-andersen/k8s-core-infra
+    repoURL: https://github.com/dag-andersen/k8s-ucp-core-gitops
     targetRevision: HEAD
     path: ./kube-applications/host/kind
   syncPolicy:
