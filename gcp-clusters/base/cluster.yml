@@ -11,9 +11,9 @@ spec:
       networkPolicyConfig:
         disabled: false
     networkRef:
-      name: crossplane-network
+      name: vpc
     subnetworkRef:
-      name: crossplane-subnetwork
+      name: vpc-subnetwork
     location: europe-west9-a
     ipAllocationPolicy:
       useIpAliases: true

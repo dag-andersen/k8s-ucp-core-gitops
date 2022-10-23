@@ -1,7 +1,7 @@
 apiVersion: compute.gcp.crossplane.io/v1beta1
 kind: Subnetwork
 metadata:
-  name: crossplane-subnetwork
+  name: vpc-subnetwork
   labels:
      service: subnetwork
      creation: crossplane
@@ -11,6 +11,6 @@ spec:
     ipCidrRange: "10.2.0.0/16" #change if required
     privateIpGoogleAccess: true
     networkRef:
-      name: crossplane-network
+      name: vpc
   providerConfigRef:
     name: gcp-provider-config

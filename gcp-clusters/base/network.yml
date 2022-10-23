@@ -1,7 +1,7 @@
 apiVersion: compute.gcp.crossplane.io/v1beta1
 kind: Network
 metadata:
-  name: crossplane-network
+  name: vpc
   labels:
      service: vpc
      creation: crossplane
