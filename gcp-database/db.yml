@@ -1,7 +1,7 @@
 apiVersion: database.gcp.crossplane.io/v1beta1
 kind: CloudSQLInstance
 metadata:
-  name: postgres-instance-3
+  name: postgres-instance-4
 spec:
   forProvider:
     databaseVersion: POSTGRES_12
@@ -17,4 +17,4 @@ spec:
     name: gcp-provider-config
   writeConnectionSecretToRef:
     namespace: crossplane-system
-    name: gcp-database-conn
+    name: gcp-database-conn-2
