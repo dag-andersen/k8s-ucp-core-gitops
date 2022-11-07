@@ -1,0 +1,5 @@
+nameReference:
+  - kind: Cluster
+    fieldSpecs:
+      - kind: Cluster
+        path: spec/writeConnectionSecretToRef/name  

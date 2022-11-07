@@ -3,5 +3,7 @@ kind: Kustomization
 commonLabels:
   app: cluster
 resources:
-- autopilot-prod.yml
-#- autopilot-stage.yml
+- autopilot.yml
+
+configurations:
+- name-ref.yml

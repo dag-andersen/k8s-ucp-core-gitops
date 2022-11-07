@@ -1,14 +1,17 @@
 apiVersion: container.gcp.crossplane.io/v1beta2
 kind: Cluster
 metadata:
-  name: auto-k8s-stage
+  name: gcp-k8s
+  labels:
+    service: gke
+    creation: crossplane
 spec:
-  providerConfigRef:
-    name: gcp-provider-config
   forProvider:
     location: europe-west9
     autopilot:
       enabled: true
+  providerConfigRef:
+    name: gcp-provider-config
   writeConnectionSecretToRef:
-    name: auto-kube-stage
+    name: gcp-k8s
     namespace: default

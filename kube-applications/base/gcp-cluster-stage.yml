@@ -3,8 +3,6 @@ kind: Application
 metadata:
   name: gcp-cluster-stage
   namespace: argocd
-  labels:
-    hasEnvs: "yes"
 spec:
   project: infrastructure
   source:
