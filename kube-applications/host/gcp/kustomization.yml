@@ -3,6 +3,7 @@ kind: Kustomization
 resources:
 - ../../envs/core
 - nginx.yml
+- external-dns.yml 
 
 patchesJson6902:
 - target:

@@ -18,7 +18,7 @@ spec:
         owner: crossplane
       oauthScopes:
         - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
-    initialNodeCount: 1
+    initialNodeCount: 2
     maxPodsConstraint:
       maxPodsPerNode: 110
     locations:
