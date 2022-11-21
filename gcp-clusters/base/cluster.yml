@@ -26,10 +26,6 @@ spec:
       enabled: false
     resourceLabels:
       owner: crossplane
-    autoscaling:
-      autoprovisioningNodePoolDefaults:
-        oauthScopes:
-          - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
   providerConfigRef:
     name: gcp-provider-config
   writeConnectionSecretToRef:
