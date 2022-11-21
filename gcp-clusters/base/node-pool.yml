@@ -16,6 +16,8 @@ spec:
       imageType: COS_CONTAINERD
       labels:
         owner: crossplane
+      oauthScopes:
+        - "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
     initialNodeCount: 1
     maxPodsConstraint:
       maxPodsPerNode: 110
