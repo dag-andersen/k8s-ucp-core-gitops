@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: gcp-provider
 spec:
-  package: crossplanecontrib/provider-gcp:v0.22.0
+  package: xpkg.upbound.io/upbound/provider-gcp:v0.33.1

@@ -3,4 +3,4 @@ kind: Provider
 metadata:
   name: aws-provider
 spec:
-  package: crossplanecontrib/provider-aws:v0.33.0
+  package: xpkg.upbound.io/upbound/provider-aws:v0.36.0
