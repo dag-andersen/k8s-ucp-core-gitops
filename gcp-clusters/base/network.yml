@@ -1,4 +1,4 @@
-apiVersion: compute.gcp.crossplane.io/v1beta1
+apiVersion: compute.gcp.upbound.io/v1beta1
 kind: Network
 metadata:
   name: vpc
@@ -9,7 +9,6 @@ spec:
   forProvider:
     autoCreateSubnetworks: false
     description: 'This network is created by crossplane'
-    routingConfig:
-      routingMode: REGIONAL
+    routingMode: REGIONAL
   providerConfigRef:
     name: gcp-provider-config
