@@ -5,9 +5,9 @@ resources:
 - argo-config.yml
 - crossplane.yml
 - prometheus.yml
-- do-provider.yml
-- aws-provider.yml
-- aws-database.yml
+# - do-provider.yml
+# - aws-provider.yml
+# - aws-database.yml
 - gcp-provider.yml
 - gcp-database.yml
 - gcp-cluster-prod.yml
