@@ -15,15 +15,8 @@ spec:
     subnetworkRef:
       name: vpc-subnetwork
     location: europe-west9-a
-    ipAllocationPolicy:
-      useIpAliases: true
-    masterAuth:
-      clientCertificateConfig:
-        issueClientCertificate: false
     defaultMaxPodsConstraint:
       maxPodsPerNode: 110
-    networkPolicy:
-      enabled: false
     resourceLabels:
       owner: crossplane
   providerConfigRef:
