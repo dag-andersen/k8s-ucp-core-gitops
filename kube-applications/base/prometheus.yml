@@ -13,6 +13,7 @@ spec:
   source:
     repoURL: 'https://prometheus-community.github.io/helm-charts'
     targetRevision: 39.9.0
+    chart: kube-prometheus-stack
     helm:
       skipCrds: true
       parameters:
@@ -33,7 +34,22 @@ spec:
               - opencost.opencost
               type: 'A'
               port: 9003
-    chart: kube-prometheus-stack
+        grafana:
+          datasources:
+            datasources.yaml:
+              apiVersion: 1
+              datasources:
+              - name: Prometheus
+                type: prometheus
+                url: http://prometheus-kube-prometheus-prometheus:9090
+                access: proxy
+                isDefault: false
+              - name: Loki
+                type: loki
+                access: proxy
+                uid: loki
+                editable: false
+                url: http://loki.loki:3100
   syncPolicy:
     automated:
       prune: true
@@ -71,11 +87,11 @@ metadata:
   name: prometheus-extra
   namespace: argocd
 spec:
-  project: infrastructure
+  project: default
   source:
-    repoURL: https://github.com/dag-andersen/k8s-ucp-core-gitops
+    repoURL: https://github.com/dag-andersen/visma-e-conomic-hiring
     targetRevision: HEAD
-    path: ./prometheus
+    path: ./k8s/prometheus
   destination:
     server: https://kubernetes.default.svc
     namespace: default
@@ -83,3 +99,56 @@ spec:
     syncOptions:
       - CreateNamespace=true
     automated: {}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: loki
+  namespace: argocd
+spec:
+  destination:
+    name: in-cluster
+    namespace: loki
+  project: default
+  source:
+    repoURL: 'https://grafana.github.io/helm-charts'
+    targetRevision: 2.9.9
+    chart: loki-stack
+    helm:
+      skipCrds: true
+      parameters:
+      - name: pushgateway.enabled
+        value: "false"
+      - name: alertmanager.enabled
+        value: "false"
+      values: |
+        loki:
+          persistence:
+            enabled: true
+            size: 1Gi
+          serviceMonitor:
+            enabled: true
+          config:
+            query_scheduler:
+              max_outstanding_requests_per_tenant: 4096
+            frontend:
+              max_outstanding_per_tenant: 4096
+            query_range:
+              parallelise_shardable_queries: true
+            limits_config:
+              split_queries_by_interval: 15m
+              max_query_parallelism: 32
+        # https://github.com/grafana/helm-charts/tree/main/charts/promtail
+        promtail:
+          config:
+            lokiAddress: http://{{ .Release.Name }}-loki:3100/loki/api/v1/push
+            snippets:
+              pipelineStages:
+                - cri: { }
+                - docker: { }
+  syncPolicy:
+    syncOptions:
+    - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
